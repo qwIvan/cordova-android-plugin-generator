@@ -6,10 +6,11 @@ import sys
 import glob
 import os
 from lxml import etree
-CORDOVA_PATH = sys.argv[1]
+if len(sys.argv) > 1:
+    CORDOVA_PATH = sys.argv[1]
+    os.chdir(CORDOVA_PATH)
 ANDROID_BASEDIR = 'android'
 PLUGIN_XML_PATH = 'plugin.xml'
-os.chdir(CORDOVA_PATH)
 if os.path.isfile(PLUGIN_XML_PATH):
     PARSER = etree.XMLParser(remove_blank_text=True)
     TREE = etree.parse(PLUGIN_XML_PATH, PARSER)
